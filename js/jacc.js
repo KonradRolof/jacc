@@ -131,6 +131,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		easingOut		: '', // jQuery easing for slideUp
 		focusSlide		: false, // scroll document to current toggler
 		focusOffset		: -10, // move target point to scroll document
-		focusFxSpeed	: 500 // speed of scroll animation
+		focusFxSpeed 	: 500 // speed of scroll animation
 	};
 })(jQuery);
