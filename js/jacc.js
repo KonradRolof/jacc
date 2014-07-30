@@ -28,29 +28,55 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		
 		ops.elm = $(this);
 
+		// start closing all togglerBoxes and may open one
 		$.fn.jacc.startup(ops);
 
+		// toggler click funktion
 		ops.elm
 			.children(ops.toggler)
 			.click(function(){
 				ops.this = $(this);
+				ops.startOption = false;
 				$.fn.jacc.fxClose(ops);
 				$.fn.jacc.fxOpen(ops);
 			});	
 
-		return this
+		return this;
 	};
 	// open selectet togglerBox an add current-classes
 	$.fn.jacc.fxOpen = function(ops)
 	{
 		if( ops.this.next(ops.togglerBox).is(":hidden") === true )
 		{
+			// add current class to toggler
 			ops.this
 				.addClass('current');
+			// add current class to toggler an opens it
 			ops.this
 				.next(ops.togglerBox)
+				.stop()
 				.addClass('current')
-				.slideDown(ops.fxSpeed,ops.easingIn);
+				.slideDown(
+				{
+					duration: ops.fxSpeed,
+					easing: ops.easingIn,
+					complete: function()
+					{
+						if( typeof (ops.slideComplete) == 'function' )
+						{
+							ops.slideComplete();
+						}
+						if( ops.focusSlide === true && ops.startOption === false )
+						{
+							$('html, body').animate({
+								scrollTop: ops.this
+									.offset()
+									.top
+									+ ops.focusOffset
+							},ops.focusFxSpeed);
+						}
+					}
+				});
 		}
 	}
 	// close togglerBoxes and remove current-classes
@@ -75,18 +101,20 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		if( ops.openFirst === true )
 		{
 			ops.this = ops.elm.children(ops.toggler).eq(0);
+			ops.startOption = true;
 			$.fn.jacc.fxOpen(ops);
 		}
 	};
 	// default options
 	$.fn.jacc.defaults =
 	{
-		togglerBox 	: '.togglerBox',
-		openFirst	: false,
-		fxSpeed		: 500,
-		easingIn	: '',
-		easingOut	: '',
-		focusSlide	: false,
-		focusOffset	: 0
+		togglerBox 		: '.togglerBox',
+		openFirst		: false,
+		fxSpeed			: 500,
+		easingIn		: '',
+		easingOut		: '',
+		focusSlide		: false,
+		focusOffset		: -10,
+		focusFxSpeed	: 500
 	};
 })(jQuery);

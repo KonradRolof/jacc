@@ -8,7 +8,7 @@
 	<script src="js/jacc.js"></script>
 	<script>
 		jQuery(document).ready(function(){
-			$('.accordion').jacc({openFirst:true});
+			$('.accordion').jacc({openFirst:true,focusSlide:true});
 		});
 	</script>
 
@@ -17,7 +17,9 @@
 </head>
 <body>
 	<div class="container">
-		<h1>jacc - ein jQuery Accordion</h1>
+		<header id="header">
+			<h1>jacc - ein jQuery Accordion</h1>
+		</header>
 
 		<div class="accordion" id="acc2">
 			<h2 class="toggler">Toggler 1</h2>
