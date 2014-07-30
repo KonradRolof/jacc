@@ -1,6 +1,6 @@
 /*
  * jQuery jacc
- * Version 0.1
+ * Version 0.2
  * Copyright (c) 2014 Konrad Rolof (http://www.konrad-rolof.de)
  * requires jQuery
  * build under jQuery 1.10.1
@@ -26,6 +26,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		// compares user settings and default settings
 		var ops = $.extend({}, $.fn.jacc.defaults, options);
 		
+		// add this object to ops array
 		ops.elm = $(this);
 
 		// start closing all togglerBoxes and may open one
@@ -34,9 +35,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		// toggler click funktion
 		ops.elm
 			.children(ops.toggler)
-			.click(function(){
+			.click(function(e){
+				// prevent page switch if toggler is an anch
+				e.preventDefault();
+				// set vars
 				ops.this = $(this);
 				ops.startOption = false;
+				// starts function for closing and opening togglerBoxes
 				$.fn.jacc.fxClose(ops);
 				$.fn.jacc.fxOpen(ops);
 			});	
@@ -62,10 +67,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					easing: ops.easingIn,
 					complete: function()
 					{
+						// callback option
 						if( typeof (ops.slideComplete) == 'function' )
 						{
 							ops.slideComplete();
 						}
+						// document slide to current toggler
 						if( ops.focusSlide === true && ops.startOption === false )
 						{
 							$('html, body').animate({
@@ -82,9 +89,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	// close togglerBoxes and remove current-classes
 	$.fn.jacc.fxClose = function(ops)
 	{	
+		// function parallel to slideUp
+		if( typeof (ops.onSlideUp) == 'function' )
+		{
+			ops.onSlideUp();
+		}
+		// remove current class from toggler
 		ops.elm
 			.children(ops.toggler)
 			.removeClass('current');
+		// remove current class of togglerBox and close them
 		ops.elm
 			.children(ops.togglerBox)
 			.removeClass('current')
@@ -93,6 +107,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	// close all togglerBoxes on start
 	$.fn.jacc.startup = function(ops)
 	{
+		// close all togglerBoxes
 		ops.elm
 			.children(ops.togglerBox)
 			.hide();
@@ -108,13 +123,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	// default options
 	$.fn.jacc.defaults =
 	{
-		togglerBox 		: '.togglerBox',
-		openFirst		: false,
-		fxSpeed			: 500,
-		easingIn		: '',
-		easingOut		: '',
-		focusSlide		: false,
-		focusOffset		: -10,
-		focusFxSpeed	: 500
+		toggler 		: '.toggler', // css class of toggler
+		togglerBox 		: '.togglerBox', // css class of toggle container
+		openFirst		: false, // opens first togglerBox on start
+		fxSpeed			: 500, // speed of slideUp/Down animation
+		easingIn		: '', // jQuery easing for slideDown
+		easingOut		: '', // jQuery easing for slideUp
+		focusSlide		: false, // scroll document to current toggler
+		focusOffset		: -10, // move target point to scroll document
+		focusFxSpeed	: 500 // speed of scroll animation
 	};
 })(jQuery);
