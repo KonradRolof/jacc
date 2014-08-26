@@ -20,8 +20,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
  *
  */
-(function($){
-	$.fn.jacc = function(options)
+(function ($){
+	$.fn.jacc = function (options)
 	{
 		// compares user settings and default settings
 		var ops = $.extend({}, $.fn.jacc.defaults, options);
@@ -35,7 +35,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		// toggler click funktion
 		ops.elm
 			.children(ops.toggler)
-			.click(function(e){
+			.click(function (e)
+			{
 				// prevent page switch if toggler is an anch
 				e.preventDefault();
 				// set vars
@@ -49,7 +50,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		return this;
 	};
 	// open selectet togglerBox an add current-classes
-	$.fn.jacc.fxOpen = function(ops)
+	$.fn.jacc.fxOpen = function (ops)
 	{
 		if( ops._this.next(ops.togglerBox).is(":hidden") === true )
 		{
@@ -87,7 +88,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		}
 	}
 	// close togglerBoxes and remove current-classes
-	$.fn.jacc.fxClose = function(ops)
+	$.fn.jacc.fxClose = function (ops)
 	{	
 		// function parallel to slideUp
 		if( typeof (ops.onSlideUp) == 'function' )
@@ -105,15 +106,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			.slideUp(ops.fxSpeed,ops.easingOut);
 	};
 	// close all togglerBoxes on start
-	$.fn.jacc.startup = function(ops)
+	$.fn.jacc.startup = function (ops)
 	{
 		// close all togglerBoxes
 		ops.elm
 			.children(ops.togglerBox)
 			.hide();
-
 		ops._hash = window.location.hash;
-		console.log(ops._hash);
 
 		// opens first togglerBox or togglerBox of hash target
 		// hash target = toggler
@@ -145,14 +144,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	// default options
 	$.fn.jacc.defaults =
 	{
-		toggler 		: '.toggler', // css class of toggler
-		togglerBox 		: '.togglerBox', // css class of toggle container
-		openFirst		: false, // opens first togglerBox on start
-		fxSpeed			: 500, // speed of slideUp/Down animation
-		easingIn		: '', // jQuery easing for slideDown
-		easingOut		: '', // jQuery easing for slideUp
-		focusSlide		: false, // scroll document to current toggler
-		focusOffset		: -10, // move target point to scroll document
-		focusFxSpeed 	: 500 // speed of scroll animation
+		toggler         : '.toggler', // css class of toggler
+		togglerBox      : '.togglerBox', // css class of toggle container
+		openFirst       : false, // opens first togglerBox on start
+		fxSpeed         : 500, // speed of slideUp/Down animation
+		easingIn        : '', // jQuery easing for slideDown
+		easingOut       : '', // jQuery easing for slideUp
+		focusSlide      : false, // scroll document to current toggler
+		focusOffset     : -10, // move target point to scroll document
+		focusFxSpeed    : 500 // speed of scroll animation
 	};
 }(jQuery));
