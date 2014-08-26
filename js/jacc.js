@@ -112,8 +112,30 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			.children(ops.togglerBox)
 			.hide();
 
-		// opens first togglerBox
-		if( ops.openFirst === true )
+		ops._hash = window.location.hash;
+		console.log(ops._hash);
+
+		// opens first togglerBox or togglerBox of hash target
+		// hash target = toggler
+		if( ops._hash.match(/^#topic:/) )
+		{
+			ops._hash = ops._hash.replace(/#topic:/,'');
+			if( ops._hash !== '' )
+			{
+				ops._this = ops.elm.children('#'+ops._hash);
+				ops.startOption = false;
+				$.fn.jacc.fxOpen(ops);
+			}
+		}
+		// hash target = inside of togglerBox
+		else if( ops.elm.find(ops._hash).length !== 0 )
+		{
+			ops._this = $(ops._hash).closest(ops.togglerBox).prev(ops.toggler);
+			ops.startOption = false;
+			$.fn.jacc.fxOpen(ops);
+		}
+		// no hash target or outside of accordion and first open
+		else if( ops.openFirst === true )
 		{
 			ops._this = ops.elm.children(ops.toggler).eq(0);
 			ops.startOption = true;
