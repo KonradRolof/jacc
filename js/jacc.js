@@ -1,6 +1,6 @@
 /*
  * jQuery jacc
- * Version 0.3
+ * Version 1
  * Copyright (c) 2014 Konrad Rolof (http://www.konrad-rolof.de)
  * requires jQuery
  * build under jQuery 1.10.1
