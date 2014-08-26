@@ -123,6 +123,14 @@ Status
 ======
 
 <ul>
+	<li>Version 1
+		<ul>
+			<li>new: if hash starst with '#topic:' toggler with id = hash name is active</li>
+			<li>new: togglerBox with hash target inside would open on start</li>
+			<li>new: add compressed version of scipt (jacc.min.js)</li>
+			<li>fix: change position of ending (jQuery)</li>
+		</ul>
+	</li>
 	<li>Version 0.3 - fix identifier problem with ops.this: changed to ops._this</li>
 	<li>Version 0.2 - Add some new functions (alpha)</li>
 	<li>Version 0.1 - Startbuild of script (alpha)</li>
