@@ -1,6 +1,6 @@
 /*
  * jQuery jacc
- * Version 0.2
+ * Version 0.3
  * Copyright (c) 2014 Konrad Rolof (http://www.konrad-rolof.de)
  * requires jQuery
  * build under jQuery 1.10.1
@@ -39,7 +39,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				// prevent page switch if toggler is an anch
 				e.preventDefault();
 				// set vars
-				ops.this = $(this);
+				ops._this = $(this);
 				ops.startOption = false;
 				// starts function for closing and opening togglerBoxes
 				$.fn.jacc.fxClose(ops);
@@ -51,13 +51,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	// open selectet togglerBox an add current-classes
 	$.fn.jacc.fxOpen = function(ops)
 	{
-		if( ops.this.next(ops.togglerBox).is(":hidden") === true )
+		if( ops._this.next(ops.togglerBox).is(":hidden") === true )
 		{
 			// add current class to toggler
-			ops.this
+			ops._this
 				.addClass('current');
 			// add current class to toggler an opens it
-			ops.this
+			ops._this
 				.next(ops.togglerBox)
 				.stop()
 				.addClass('current')
@@ -76,7 +76,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 						if( ops.focusSlide === true && ops.startOption === false )
 						{
 							$('html, body').animate({
-								scrollTop: ops.this
+								scrollTop: ops._this
 									.offset()
 									.top
 									+ ops.focusOffset
@@ -115,7 +115,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		// opens first togglerBox
 		if( ops.openFirst === true )
 		{
-			ops.this = ops.elm.children(ops.toggler).eq(0);
+			ops._this = ops.elm.children(ops.toggler).eq(0);
 			ops.startOption = true;
 			$.fn.jacc.fxOpen(ops);
 		}
