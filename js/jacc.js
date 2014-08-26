@@ -155,4 +155,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		focusOffset		: -10, // move target point to scroll document
 		focusFxSpeed 	: 500 // speed of scroll animation
 	};
-})(jQuery);
+}(jQuery));
