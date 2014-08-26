@@ -123,6 +123,7 @@ Status
 ======
 
 <ul>
+	<li>Version 0.3 - fix identifier problem with ops.this: changed to ops._this</li>
 	<li>Version 0.2 - Add some new functions (alpha)</li>
 	<li>Version 0.1 - Startbuild of script (alpha)</li>
 </ul>
